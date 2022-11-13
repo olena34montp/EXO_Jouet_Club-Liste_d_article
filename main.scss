@@ -1,0 +1,97 @@
+@use "variables";
+@use "mixin";
+
+
+* {
+    @include mixin.reset;
+}
+
+.products {
+    max-width: variables.$container-size;
+    margin: 0 auto;
+
+    &__list {
+        @include mixin.flex (row, space-between, normal);
+    }
+    &__item {
+        display: flex;
+        flex-direction: row;
+        width: 24%;
+        border: 1px solid lighten($color: variables.$ternary-color, $amount: 40);
+        box-shadow: 5px 5px 8px lighten($color: variables.$ternary-color, $amount: 20);
+
+        &--inner {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+}
+
+.product {
+    @include mixin.position (false);
+    text-align: center;
+    padding: 10px;
+    &__marker {
+        @include mixin.position (true);
+        @include mixin.position-coordinates (0, auto, auto, -15px);
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: x-small;
+        color: #fff;
+        background-color: variables.$secondary-color;
+        border-radius: variables.$border-radius;
+    }
+    &__image {
+        display: flex;
+        flex-grow: 1;
+        margin-bottom: 10px;
+        &--link {
+            display: flex;
+            align-self: center;
+        }
+        &--photo {
+            @include mixin.size (100%, 100%);
+        }
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        &--caption-link {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        &--caption-name {
+            font-weight: 700;
+            color: variables.$primary-color;
+        }
+        &--caption-brand {
+            color: variables.$ternary-color;
+        }
+        &--price {
+            margin: 20px 0;
+        }
+        &--price-value {
+            font-weight: 800;
+            font-size: 30px;
+            color: variables.$primary-color;
+        }
+    }
+    &__price {
+        &--button button {
+            padding: 10px 20px;
+            font-weight: 700;
+            color: #fff;
+            background-color: variables.$primary-color;
+            border: none;
+            border-radius: variables.$border-radius;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        &--stock-availability {
+            color: lighten($color: variables.$primary-color, $amount: 30);
+        }
+    }
+}
